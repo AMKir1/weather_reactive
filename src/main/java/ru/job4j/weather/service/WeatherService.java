@@ -28,11 +28,16 @@ public class WeatherService {
     }
 
     public Mono<Weather> findHottest() {
-        return Mono.justOrEmpty(weathers.values().stream().max(Comparator.comparingInt(Weather::getTemperature)));
+        return Mono.justOrEmpty(weathers.values()
+                .stream()
+                .max(Comparator.comparingInt(Weather::getTemperature)));
     }
 
     public Flux<Weather> getCityGreatThen(int temp) {
-        return Flux.fromIterable(weathers.values().stream().filter(v -> v.getTemperature() > temp).collect(Collectors.toList()));
+        return Flux.fromIterable(weathers.values()
+                .stream()
+                .filter(v -> v.getTemperature() > temp)
+                .collect(Collectors.toList()));
     }
 
     public Flux<Weather> all() {
